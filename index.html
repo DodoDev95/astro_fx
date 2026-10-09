@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astrophotography FX</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <canvas id="glcanvas"></canvas>
+    
+    <div class="ui-overlay">
+      <h1>Astro FX</h1>
+      <div class="control-group">
+        <label for="image-upload" class="upload-btn">Upload Image</label>
+        <input type="file" id="image-upload" accept="image/*" />
+      </div>
+      
+      <div class="control-group">
+        <select id="mode-select">
+          <option value="0">Galaxy (Swirl)</option>
+          <option value="1">Nebula (Noise Drift)</option>
+          <option value="2">Planet (Spherization)</option>
+        </select>
+      </div>
+      
+      <div class="control-group">
+        <button id="reset-btn" class="upload-btn hidden">Reset Animation</button>
+      </div>
+      
+      <div class="control-group hidden" id="rotation-control">
+        <label for="rotation-slider" style="display:block; margin-bottom:8px; font-size:0.9rem; color:#a0a0b0;">Rotation Angle</label>
+        <input type="range" id="rotation-slider" min="-180" max="180" value="0" style="width:100%;">
+      </div>
+
+      <div class="control-group hidden" id="glow-control">
+        <label for="glow-slider" style="display:block; margin-bottom:8px; font-size:0.9rem; color:#a0a0b0;">Core Glow Intensity</label>
+        <input type="range" id="glow-slider" min="0" max="200" value="30" style="width:100%;">
+      </div>
+      
+      <div class="control-group hidden" id="wisp-control">
+        <label for="wisp-slider" style="display:block; margin-bottom:8px; font-size:0.9rem; color:#a0a0b0;">Gas Emission Intensity: <span id="wisp-value">4.0</span>x</label>
+        <input type="range" id="wisp-slider" min="0" max="2000" value="400" style="width:100%;">
+      </div>
+      
+      <div class="instruction" id="mode-instruction">
+        Click and drag from the center of the galaxy outwards to define its elliptical shape.
+      </div>
+    </div>
+
+    <!-- Interaction Overlays -->
+    <div id="interaction-prompt" class="interaction-prompt hidden">
+      <h2>Outline the Galaxy</h2>
+      <p>Click and drag from the center outwards to outline the galaxy (you can make it oval).</p>
+    </div>
+    
+    <button id="apply-btn" class="apply-btn hidden">Apply Animation</button>
+
+    <!-- Selection Circle Overlay -->
+    <div id="selection-circle" style="display:none; position:absolute; border:2px dashed rgba(255,255,255,0.7); border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); box-shadow: 0 0 15px rgba(0,0,0,0.5); z-index: 10;"></div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
